@@ -1,0 +1,511 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600;700&display=swap');
+
+body {
+  margin: 0;
+  background: #000; /* black background */
+  font-family: Inter, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #111;
+  min-height: 100vh;
+}
+
+/* Centering wrapper that places a white card in the middle */
+.app-center {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+/* White card shown on top of black background */
+.card {
+  position: relative; /* ensure close button can be positioned */
+  background: #ffffff;
+  color: #0b0b0b;
+  padding: 40px;
+  border-radius: 14px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Close (cross) button in top-right of the card */
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  color: #666;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 6px;
+  transition: background 0.12s ease, color 0.12s ease, transform 0.08s ease;
+}
+
+.close-btn:hover {
+  background: rgba(0, 0, 0, 0.06);
+  color: #111;
+  transform: translateY(-1px);
+}
+
+.close-btn:focus {
+  outline: 2px solid rgba(0,123,255,0.2);
+  outline-offset: 2px;
+}
+
+/* Heading and subtitle styling */
+h1 {
+  font-size: 28px;
+  margin: 0 0 8px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+  color: #0b0b0b;
+}
+
+.subtitle {
+  margin: 0 0 18px;
+  color: #444;
+  font-size: 16px;
+}
+
+/* Input */
+.name-input {
+  width: 100%;
+  max-width: 420px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #e6e6e6;
+  margin: 0 auto 18px;
+  display: block;
+  font-size: 16px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.name-input:focus {
+  box-shadow: 0 0 0 6px rgba(0, 123, 255, 0.08);
+  border-color: #007bff;
+}
+
+/* Send button */
+.send-button {
+  padding: 12px 26px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  background: linear-gradient(90deg,#0066ff 0%,#0047d1 100%);
+  box-shadow: 0 10px 30px rgba(0,102,255,0.25);
+  transition: transform .08s ease, box-shadow .08s ease;
+}
+
+.send-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 36px rgba(0,102,255,0.32);
+}
+
+/* Thank you page wrapper */
+.thankyou-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  color: #fff;
+}
+
+/* Love-card uses public/lovelogo.png as centered background */
+.love-card {
+  position: relative;
+  width: 360px;
+  height: 360px;
+  border-radius: 14px;
+  background-image: url('/lovelogo.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* increase logo size and place overlay over the lower center of the image */
+.love-hero {
+  position: relative;
+  width: min(92vw, 940px);
+  height: min(74vh, 760px);
+  border-radius: 16px;
+  background-image: url('/lovelogo.png');
+  background-size: 80% auto;
+  background-position: center center;    /* center the image */
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;                   /* center overlay vertically */
+  justify-content: center;               /* center overlay horizontally */
+  padding: 0 20px;                       /* keep horizontal padding, remove bottom padding */
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.7);
+  overflow: hidden;
+}
+
+/* allow overlay to grow and scroll if content is long */
+.valentine-overlay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 26px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.48);
+  border-radius: 12px;
+  max-width: 86%;
+  max-height: 78%;     /* limit overlay height relative to hero */
+  overflow: auto;      /* enable scrolling when content is larger */
+  z-index: 2;
+}
+
+/* larger, more prominent question text */
+.valentine-text {
+  color: #fff;
+  font-size: clamp(20px, 4.2vw, 36px);   /* scales with viewport */
+  font-weight: 800;
+  margin: 0;
+  text-shadow: 0 6px 22px rgba(0,0,0,0.6);
+}
+
+/* slightly bigger buttons for this layout */
+.valentine-buttons { display: flex; gap: 12px; margin-top: 6px; }
+.btn-yes, .btn-no {
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 16px;
+}
+.btn-yes { background: linear-gradient(90deg,#ff5a7a,#ff2d5c); color: #fff; }
+.btn-no  { background: rgba(255,255,255,0.92); color: #111; }
+
+/* small inline error for Welcome page */
+.error {
+  color: #ff6666;
+  margin: 8px 0 12px;
+  font-weight: 600;
+}
+
+/* modal for No button */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.6);
+  z-index: 9999;
+  padding: 20px;
+}
+.modal-content {
+  background: #fff;
+  color: #111;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 520px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+}
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* make the long love message scrollable inside the overlay */
+.love-message {
+  font-family: 'Playfair Display', Georgia, serif; /* elegant serif for a romantic feel */
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(15px, 1.8vw, 20px);
+  line-height: 1.75;
+  letter-spacing: 0.2px;
+  text-align: left;
+  color: #fff;
+  margin-bottom: 16px;
+
+  /* keep it scrollable but contained */
+  max-height: calc(60vh);
+  overflow-y: auto;
+  padding: 12px 14px;
+  width: 70%;
+  box-sizing: border-box;
+
+  /* soft glow for readability on the image */
+  text-shadow: 0 6px 22px rgba(0,0,0,0.65);
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.00));
+  border-radius: 8px;
+}
+
+/* optional decorative drop-cap for the first letter */
+.love-message::first-letter {
+  float: left;
+  font-size: 2.2em;
+  line-height: 1;
+  margin-right: 10px;
+  font-weight: 700;
+  color: #ffd1dc;
+}
+
+/* Magical welcome card (use class "card magical") */
+.card.magical {
+  position: relative;
+  overflow: hidden;
+  padding: 48px 36px;
+  border-radius: 18px;
+  max-width: 760px;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  background: linear-gradient(135deg, rgba(120,58,255,0.18), rgba(255,80,140,0.12));
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 20px 60px rgba(56, 18, 88, 0.55), inset 0 -6px 30px rgba(0,0,0,0.25);
+  backdrop-filter: blur(6px) saturate(120%);
+}
+
+/* subtle animated glow ring */
+.card.magical::before {
+  content: "";
+  position: absolute;
+  inset: -30%;
+  background: radial-gradient(circle at 10% 30%, rgba(255,200,230,0.06), transparent 8%),
+              radial-gradient(circle at 90% 70%, rgba(120,180,255,0.06), transparent 8%);
+  transform: rotate(6deg);
+  animation: floatGlow 6s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes floatGlow {
+  0% { transform: translateY(0) rotate(6deg); opacity: 1; }
+  50% { transform: translateY(-8px) rotate(4deg); opacity: 0.95; }
+  100% { transform: translateY(0) rotate(6deg); opacity: 1; }
+}
+
+/* tiny star particles inside card */
+.card.magical .stars {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(2px 2px at 10% 20%, rgba(255,255,255,0.9), transparent),
+    radial-gradient(1.5px 1.5px at 40% 10%, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1.8px 1.8px at 70% 25%, rgba(255,255,255,0.85), transparent),
+    radial-gradient(1.2px 1.2px at 25% 75%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1.6px 1.6px at 80% 80%, rgba(255,255,255,0.75), transparent);
+  mix-blend-mode: screen;
+  opacity: 0.9;
+  animation: twinkle 4s linear infinite;
+  filter: blur(0.2px);
+}
+@keyframes twinkle {
+  0% { opacity: 0.85; transform: translateY(0) }
+  50% { opacity: 0.65; transform: translateY(-3px) }
+  100% { opacity: 0.85; transform: translateY(0) }
+}
+
+/* Magical headline */
+.magical-title {
+  margin: 0 0 12px;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(20px, 2.8vw, 30px);
+  line-height: 1.18;
+  color: #fff;
+  text-shadow: 0 8px 30px rgba(120,40,180,0.28);
+}
+
+/* gradient accent for important words */
+.magical-title .accent {
+  background: linear-gradient(90deg, #ffd1dc 0%, #ff9bd1 30%, #9be6ff 70%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 800;
+  text-transform: none;
+}
+
+/* subtitle with sparkle underline */
+.card.magical .subtitle {
+  color: rgba(255,255,255,0.86);
+  margin-bottom: 20px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+}
+
+/* input tweaks for the magical look */
+.card.magical .name-input {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: #fff;
+  padding: 14px 16px;
+  border-radius: 12px;
+  box-shadow: inset 0 -2px 8px rgba(0,0,0,0.35);
+  transition: box-shadow .18s ease, transform .12s ease, border-color .12s ease;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto 14px;
+}
+.card.magical .name-input::placeholder { color: rgba(255,255,255,0.6); }
+.card.magical .name-input:focus {
+  box-shadow: 0 8px 30px rgba(120,58,255,0.12), inset 0 -2px 8px rgba(0,0,0,0.45);
+  border-color: rgba(156, 89, 255, 0.9);
+  outline: none;
+  transform: translateY(-1px);
+}
+
+/* Send button stronger accent on magical card */
+.card.magical .send-button {
+  background: linear-gradient(90deg, #ff7ab6 0%, #7b8bff 100%);
+  box-shadow: 0 12px 30px rgba(123, 70, 255, 0.24);
+  padding: 12px 28px;
+  border-radius: 12px;
+  font-weight: 700;
+}
+
+/* small error under input */
+.card.magical .error {
+  color: #ffd1d1;
+  background: rgba(255,60,60,0.06);
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin: 8px auto 12px;
+  max-width: 480px;
+}
+
+/* extend magical look to the hero and modal used on ThankYou/Love pages */
+.love-hero.magical {
+  position: relative;
+  width: min(92vw, 920px);
+  height: min(78vh, 820px);
+  border-radius: 18px;
+  background-size: 78% auto;
+  background-position: center 18%;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px;
+  box-shadow: 0 40px 100px rgba(30, 4, 60, 0.75), inset 0 -8px 40px rgba(0,0,0,0.35);
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.04);
+  backdrop-filter: blur(4px) saturate(120%);
+}
+
+/* reuse .stars for subtle particles on hero */
+.love-hero.magical .stars {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(2px 2px at 12% 18%, rgba(255,255,255,0.9), transparent),
+    radial-gradient(1.6px 1.6px at 34% 8%, rgba(255,255,255,0.84), transparent),
+    radial-gradient(1.6px 1.6px at 72% 25%, rgba(255,255,255,0.85), transparent),
+    radial-gradient(1.3px 1.3px at 26% 70%, rgba(255,255,255,0.7), transparent);
+  mix-blend-mode: screen;
+  opacity: 0.85;
+  pointer-events: none;
+  filter: blur(0.4px);
+}
+
+/* overlay tweaks for hero */
+.valentine-overlay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 26px;
+  text-align: center;
+  background: linear-gradient(180deg, rgba(10,8,24,0.55), rgba(10,8,24,0.36));
+  border-radius: 14px;
+  max-width: 82%;
+  max-height: 76%;
+  overflow: auto;
+  z-index: 2;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.55);
+}
+
+/* valentine buttons / heading preserved but tuned for magical theme */
+.valentine-text {
+  color: #fff;
+  font-size: clamp(18px, 3.8vw, 34px);
+  font-weight: 800;
+  margin: 0;
+  text-shadow: 0 8px 30px rgba(120,40,140,0.35);
+}
+
+.btn-yes {
+  background: linear-gradient(90deg,#ff7ab6 0%, #ff3b7a 100%);
+  color: #fff;
+  padding: 12px 22px;
+  border-radius: 12px;
+  border: none;
+  font-weight: 800;
+  box-shadow: 0 12px 30px rgba(255,80,150,0.18);
+}
+.btn-no {
+  background: rgba(255,255,255,0.96);
+  color: #111;
+  padding: 12px 20px;
+  border-radius: 12px;
+  border: none;
+  font-weight: 700;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.12);
+}
+
+/* modal: keep magical card look */
+.modal-content.magical {
+  background: linear-gradient(180deg,#fff,#fff);
+  color: #111;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 520px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 30px 80px rgba(20,6,40,0.55);
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+/* love-message: tuned width and spacing to sit nicely inside hero */
+.love-message {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(15px, 1.6vw, 18px);
+  line-height: 1.65;
+  letter-spacing: 0.2px;
+  text-align: left;
+  color: #fff;
+  margin-bottom: 16px;
+  max-height: 54vh;
+  overflow-y: auto;
+  padding: 10px 12px;
+  width: 72%;
+  box-sizing: border-box;
+  text-shadow: 0 6px 22px rgba(0,0,0,0.6);
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.00));
+  border-radius: 8px;
+}
+
+/* ensure hero elements are responsive */
+@media (max-width: 640px) {
+  .love-hero.magical { height: 78vh; padding: 18px; background-size: 85% auto; }
+  .love-message { width: 100%; max-height: 44vh; }
+  .valentine-overlay { max-width: 94%; padding: 14px; }
+}
