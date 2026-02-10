@@ -13,7 +13,7 @@ const SendButton = ({ onClick }) => {
 
   return (
     <button className="send-button" onClick={handleClick}>
-      Send
+      Let’s go 💖
     </button>
   );
 };
