@@ -1,6 +1,6 @@
 [build]
-  base    = "react-welcome-app"
-  publish = "react-welcome-app/dist"
+  base = "react-welcome-app"
+  publish = "dist"
   command = "npm run build"
 
 [dev]
