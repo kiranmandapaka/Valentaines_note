@@ -5,3 +5,8 @@
 
 # [dev]
 #   command = "npm run dev"
+
+[build]
+  base = "react-welcome-app"
+  command = "npm run build"
+  publish = "dist"
