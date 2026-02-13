@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import logo from "../assests/lovelogo.png";
+import logo from "../../../public/logo.png";
 
 const ThankYou = () => {
   const { state } = useLocation();

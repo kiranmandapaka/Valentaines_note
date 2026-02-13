@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import logo from '../assests/lovelogo.png'
-import videoSrc from '../assests/WhatsApp Video 2026-02-10 at 22.35.31.mp4'
+import logo from '../../../public/logo.png'
+import videoSrc from '../../../public/WhatsApp_Video.mp4'
 
 const Love = () => {
   const { state } = useLocation()
